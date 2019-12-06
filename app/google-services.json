@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "35324115891",
+    "firebase_url": "https://sitiservices-74cb5.firebaseio.com",
+    "project_id": "sitiservices-74cb5",
+    "storage_bucket": "sitiservices-74cb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35324115891:android:01eb98a8bff57aeee869c6",
+        "android_client_info": {
+          "package_name": "com.example.android.sitiservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35324115891-lb7go6rp0546315jpo4lpq0hfg70js33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr-pb32xZsItEDDBm2VNxI3DHJrif6jmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35324115891-lb7go6rp0546315jpo4lpq0hfg70js33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
