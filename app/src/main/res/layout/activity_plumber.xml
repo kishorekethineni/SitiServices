@@ -1,118 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:id="@+id/swipe_men_sports"
     tools:context=".Services.Plumber">
-    <ImageView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerView_Sports_Men"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/plumberservice"
-        android:scaleType="fitXY"/>
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
-                android:textStyle="bold"
-                android:textSize="30dp"
-                android:textColor="@color/grey"
-                android:layout_marginLeft="90dp"
-                android:text="Boooking Form"/>
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="30dp"
-                android:id="@+id/e1"
-                android:layout_marginLeft="25dp"
-                android:inputType="text"
-                android:background="@drawable/edittextbg"
-                android:hint="Enter Your Name"/>
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/e2"
-                android:inputType="date"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/edittextbg"
-                android:hint="Enter Your DOB"/>
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/e3"
-                android:layout_marginLeft="25dp"
-                android:inputType="textEmailAddress"
-                android:background="@drawable/edittextbg"
-                android:hint="Enter Your Mail Id"/>
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/e4"
-                android:layout_marginLeft="25dp"
-                android:inputType="number"
-                android:background="@drawable/edittextbg"
-                android:hint="Enter Your Mobile "/>
-
-
-            <Spinner
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/s1"
-                android:layout_marginLeft="25dp"
-                style="@style/Base.TextAppearance.AppCompat.Widget.Button"
-                android:hint="Select Your City"/>
-
-            <Spinner
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/s2"
-                android:layout_marginLeft="25dp"
-                >
-
-            </Spinner>
-
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/e5"
-                android:layout_marginLeft="25dp"
-                android:background="@drawable/edittextbg"
-                android:hint="Address "
-                />
-
-            <Button
-                android:layout_width="80dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginLeft="140dp"
-                android:id="@+id/b1"
-                android:text="BOOK"
-
-                android:background="@color/light_grey"/>
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-
-
-
-</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

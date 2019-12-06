@@ -11,6 +11,7 @@ import com.example.android.sitiservices.Services.Carpenter;
 import com.example.android.sitiservices.Services.Electrician;
 import com.example.android.sitiservices.Services.Plumber;
 import com.example.android.sitiservices.Services.Refrigirator;
+import com.example.android.sitiservices.Services.Service_Holder;
 import com.example.android.sitiservices.Services.Washing;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -94,7 +95,7 @@ ViewPager viewPager;
     }
 
     public void Electrician(View view) {
-        Intent i=new Intent(getApplicationContext(), Electrician.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         startActivity(i);
     }
 

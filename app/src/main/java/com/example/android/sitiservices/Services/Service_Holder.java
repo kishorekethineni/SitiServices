@@ -22,7 +22,7 @@ public class Service_Holder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service__holder);
         ViewPager viewPager=findViewById(R.id.ViewPagerInMenFragment);
-        viewPager.setAdapter(new MyAdapterForMenFragment(getChildFragmentManager()));
+        viewPager.setAdapter(new MyAdapterForMenFragment(getSupportFragmentManager()));
         TabLayout tabLayout=findViewById(R.id.TabLayoutInMenFragment);
         tabLayout.setupWithViewPager(viewPager);
     }
@@ -39,17 +39,17 @@ public class Service_Holder extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    return new FormalShoe(getContext());
+                    return new Amc(getApplicationContext());
                 case 1:
-                    return new SneakersShoe(getContext());
+                    return new Electrician(getApplicationContext());
                 case 2:
-                    return new SportsShoe(getContext());
+                    return new Plumber(getApplicationContext());
                 case 3:
-                    return new SmartShoe(getContext());
+                    return new Refrigirator(getApplicationContext());
                 case 4:
-                    return new EthnicShoe(getContext());
+                    return new Carpenter(getApplicationContext());
                 case 5:
-                    return new CasualShoe(getContext());
+                    return new Washing(getApplicationContext());
 
             }
             return null;
