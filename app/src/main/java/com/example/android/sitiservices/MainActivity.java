@@ -56,38 +56,37 @@ ViewPager viewPager;
 
 
     public void Search(View view) {
-        Intent i=new Intent(getApplicationContext(), Search.class);
-        i.putExtra("Type","Search");
-        startActivity(i);
+//        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
+//        i.putExtra("Type","Search");
+//        startActivity(i);
     }
 
     public void Painter(View view) {
-        Intent i=new Intent(getApplicationContext(), Painter.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         i.putExtra("Type","Painter");
         startActivity(i);
     }
 
     public void BabbySitter(View view) {
-        Intent i=new Intent(getApplicationContext(), BabbySitter.class);
-        i.putExtra("Type","Electrician");
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
+        i.putExtra("Type","BabySitter");
         startActivity(i);
     }
 
     public void Driver(View view) {
-        Intent i=new Intent(getApplicationContext(), Driver.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         i.putExtra("Type","Driver");
-
         startActivity(i);
     }
 
     public void Builder(View view) {
-        Intent i=new Intent(getApplicationContext(), Builder.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         i.putExtra("Type","Builder");
         startActivity(i);
     }
 
     public void Cook(View view) {
-        Intent i=new Intent(getApplicationContext(), Cook.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         i.putExtra("Type","Cook");
         startActivity(i);
     }
@@ -99,30 +98,32 @@ ViewPager viewPager;
     }
 
     public void Plumber(View view) {
-        Intent i=new Intent(getApplicationContext(), Plumber.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         i.putExtra("Type","Plumber");
         startActivity(i);
     }
 
     public void Carpenter(View view) {
-        Intent i=new Intent(getApplicationContext(), Carpenter.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
         i.putExtra("Type","Carpenter");
         startActivity(i);
     }
 
     public void Refrigirator(View view) {
-        Intent i=new Intent(getApplicationContext(), Refrigirator.class);
-        i.putExtra("Type","Re");
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
+        i.putExtra("Type","Refrigirator");
         startActivity(i);
     }
 
     public void Washing(View view) {
-        Intent i=new Intent(getApplicationContext(), Washing.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
+        i.putExtra("Type","Washing");
         startActivity(i);
     }
 
     public void AMC(View view) {
-        Intent i=new Intent(getApplicationContext(), Amc.class);
+        Intent i=new Intent(getApplicationContext(), Service_Holder.class);
+        i.putExtra("Type","AMC");
         startActivity(i);
     }
 

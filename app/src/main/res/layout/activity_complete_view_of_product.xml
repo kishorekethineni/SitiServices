@@ -258,21 +258,20 @@
                         android:id="@+id/AddToCart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add to Cart"
-                        android:background="@color/DodgerBlue"
-                        android:textColor="@color/White"
                         android:layout_weight="1"
-                        />
+                        android:background="@color/DodgerBlue"
+                        android:text="Add to Bookings"
+                        android:textColor="@color/White" />
+
                     <Button
                         android:id="@+id/BuyNow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Buy Now"
                         android:background="@drawable/bg"
-                        android:textColor="@color/White"
                         android:onClick="onClick"
-                        />
+                        android:text="Book Now"
+                        android:textColor="@color/White" />
                 </LinearLayout>
 
             </LinearLayout>

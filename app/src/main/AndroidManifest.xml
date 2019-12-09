@@ -37,11 +37,11 @@
         <activity android:name=".Services.Carpenter" />
         <activity android:name=".Services.Plumber" />
         <activity android:name=".Services.Electrician" />
-        <activity android:name=".Cook" />
-        <activity android:name=".Builder" />
-        <activity android:name=".Driver" />
-        <activity android:name=".BabbySitter" />
-        <activity android:name=".Painter" />
+        <activity android:name=".Services.Cook" />
+        <activity android:name=".Services.Builder" />
+        <activity android:name=".Services.Driver" />
+        <activity android:name=".Services.BabbySitter" />
+        <activity android:name=".Services.Painter" />
         <activity android:name=".Profile.A_AccountSettings" />
         <activity android:name=".Profile.A_AddNewAddress" />
         <activity android:name=".Profile.A_MyAddresses" />

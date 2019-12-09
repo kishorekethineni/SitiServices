@@ -91,7 +91,7 @@ public class A_MyCart extends AppCompatActivity implements View.OnClickListener 
     ArrayList<String> addressArrayList=new ArrayList<>();
     Toolbar toolbar;
     SwipeRefreshLayout swipeRefreshLayout;
-    String payeeAddress="9550140561@ybl",payeeName= D_CurrentUser.getName(),transactionNote="First Corporation:",fakeamount="1",currencyUnit="INR";
+    String payeeAddress="9505123217@ybl",payeeName= D_CurrentUser.getName(),transactionNote="Siti Services",fakeamount="1",currencyUnit="INR";
     int TotalCost=0;
     ArrayList<Integer> purchaseditems=new ArrayList<>();
     String D_address_For_Shipping,D_ProductTitle,D_ProductDescription,D_Image,D_Quantity,D_Size,amount,D_ProductCategoryByGender1,D_ProductCategoryByMaterial1;
@@ -460,7 +460,7 @@ public class A_MyCart extends AppCompatActivity implements View.OnClickListener 
         PendingIntent pendingIntent=PendingIntent.getActivity(getApplicationContext(),0,intent,0);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(getApplicationContext(),CHANNEL_1_ID)
                 .setContentTitle("Payment")
-                .setContentText("You have purchased "+D_ProductTitle+" You will soon receive this Product")
+                .setContentText("You have Booked "+D_ProductTitle+" You will soon receive this Servicre")
                 .setStyle(new NotificationCompat.BigTextStyle().bigText("Payment is Success"))
                 .setChannelId(CHANNEL_1_ID)
                 .setAutoCancel(true)
@@ -476,7 +476,7 @@ public class A_MyCart extends AppCompatActivity implements View.OnClickListener 
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
         {
             NotificationChannel channel=new NotificationChannel(CHANNEL_1_ID,"Channel1Booking", NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription("Your Order has been Confirmed Successfully");
+            channel.setDescription("Your Booking has been Confirmed Successfully");
             channel.setShowBadge(true);
             NotificationManager manager=(NotificationManager) getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
@@ -484,7 +484,7 @@ public class A_MyCart extends AppCompatActivity implements View.OnClickListener 
     }
     private void getKeysFromFirebase()
     {
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Users").child("UsersNormalShoeOrders");
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Users").child("Bookings");
         for (int i=0;i<purchaseditems.size();i++)
         {
             String ke= databaseReference.push().getKey();
@@ -499,7 +499,18 @@ public class A_MyCart extends AppCompatActivity implements View.OnClickListener 
 
         for (int i=0;i<purchaseditems.size();i++)
         {
-           finalarraylist.add(new D_PastOrders(D_CurrentUser.getName(),D_CurrentUser.getPhone(),D_CurrentUser.getEmail(),D_address_For_Shipping,arrayList.get(i).WorkerName,arrayList.get(i).WorkerEmail,arrayList.get(i).WorkerImage,"1","7",D_ProductCategoryByGender.get(i),D_ProductCategoryByMaterial.get(i),arrayList.get(i).WorkerMobileNumber,ordersarraylist.get(i),formatter.format(date)+"_"+"Pending"));
+            finalarraylist.add(new D_PastOrders(D_CurrentUser.getName(),
+                    D_CurrentUser.getPhone(),
+                    D_CurrentUser.getEmail(),
+                    D_address_For_Shipping,
+                    arrayList.get(i).WorkerName,
+                    arrayList.get(i).WorkerBio,
+                    arrayList.get(i).WorkerImage,
+                    "1","7",
+                    D_ProductCategoryByGender.get(i),
+                    D_ProductCategoryByMaterial.get(i),
+                    arrayList.get(i).WorkerMobileNumber,
+                    ordersarraylist.get(i),formatter.format(date)+"_"+"Pending"));
         }
     }
 

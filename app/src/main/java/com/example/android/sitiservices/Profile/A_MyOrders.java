@@ -22,6 +22,7 @@
  import com.example.android.sitiservices.R;
  import com.example.android.sitiservices.Services.CompleteViewOfProduct;
  import com.example.android.sitiservices.Services.D_PastOrders;
+ import com.example.android.sitiservices.Services.D_ProfileOfWorker;
  import com.google.firebase.auth.FirebaseAuth;
  import com.google.firebase.database.DataSnapshot;
  import com.google.firebase.database.DatabaseError;
@@ -41,11 +42,11 @@
      TextView noOfpastOrders;
      RecyclerView recyclerView;
      ArrayList<String> keys=new ArrayList<>();
-     ArrayList<D_PastOrders> arrayListForPastOrders=new ArrayList<>();
+     ArrayList<D_ProfileOfWorker> arrayListForPastOrders=new ArrayList<>();
      MyAdapterForPastOrders myAdapter;
       SwipeRefreshLayout swipeRefreshLayout;
       DatabaseReference databaseReferenceforkey= FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("MyOrders");
-      DatabaseReference databaseReferencefordata= FirebaseDatabase.getInstance().getReference("Users").child("UsersNormalShoeOrders");
+      DatabaseReference databaseReferencefordata= FirebaseDatabase.getInstance().getReference("Users").child("Bookings");
      @Override
      protected void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
@@ -98,14 +99,16 @@
              @Override
              public void onItemClickListenerOfCardView(int position) {
                  Intent intent=new Intent(getApplicationContext(), CompleteViewOfProduct.class);
-                 intent.putExtra("ImageLocation",arrayListForPastOrders.get(position).ProductImage);
-                 intent.putExtra("ProductTitle",arrayListForPastOrders.get(position).ProductName);
-                 intent.putExtra("ProductPrice",arrayListForPastOrders.get(position).AmountPaid);
-                 intent.putExtra("ProductDescription",arrayListForPastOrders.get(position).ProductDescription);
-                 intent.putExtra("ProductCategoryByMaterial",arrayListForPastOrders.get(position).ProductCategoryByMaterial);
-                 intent.putExtra("ProductCategoryByGender",arrayListForPastOrders.get(position).ProductCategoryByGender);
-                 intent.putExtra("Quantity",arrayListForPastOrders.get(position).NoOfOrdersPurchased);
-                 intent.putExtra("Size",arrayListForPastOrders.get(position).ProductSize);
+                 intent.putExtra("ImageLocation",arrayListForPastOrders.get(position).WorkerImage);
+                 intent.putExtra("Workername",arrayListForPastOrders.get(position).WorkerName);
+                 intent.putExtra("Workermobile",arrayListForPastOrders.get(position).WorkerMobileNumber);
+                 intent.putExtra("WorkerEmail",arrayListForPastOrders.get(position).WorkerEmail);
+                 intent.putExtra("Workerbio",arrayListForPastOrders.get(position).WorkerBio);
+                 intent.putExtra("Workeraddress",arrayListForPastOrders.get(position).WorkerAddress);
+                 intent.putExtra("ProductCategoryByMaterial","Electrician");
+                 intent.putExtra("ProductCategoryByGender","Workers");
+//                 intent.putExtra("Quantity",arrayListForPastOrders.get(position).NoOfOrdersPurchased);
+//                 intent.putExtra("Size",arrayListForPastOrders.get(position).ProductSize);
                  startActivity(intent);
              }
          });
@@ -148,9 +151,9 @@
 
      class MyAdapterForPastOrders extends RecyclerView.Adapter<MyAdapterForPastOrders.ViewHolderClass>
      {
-         ArrayList<D_PastOrders> arrayList;
+         ArrayList<D_ProfileOfWorker> arrayList;
          OnCardViewItemClickListener onCardViewItemClickListener;
-         MyAdapterForPastOrders(ArrayList<D_PastOrders> arrayList1)
+         MyAdapterForPastOrders(ArrayList<D_ProfileOfWorker> arrayList1)
          {
           this.arrayList=arrayList1;
          }
@@ -166,9 +169,9 @@
 
          @Override
          public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
-             holder.Name.setText(arrayList.get(position).ProductName);
-             holder.Price.setText(arrayList.get(position).AmountPaid);
-             Glide.with(getApplicationContext()).load(arrayList.get(position).ProductImage).into(holder.ProductImage);
+             holder.Name.setText(arrayList.get(position).WorkerName);
+             holder.Price.setText(arrayList.get(position).WorkerMobileNumber);
+             Glide.with(getApplicationContext()).load(arrayList.get(position).WorkerImage).into(holder.ProductImage);
 
          }
 
@@ -221,21 +224,14 @@
                              public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                              {
                                  if (dataSnapshot.exists()) {
-                                     String CustomerName = dataSnapshot.child("CustomerName").getValue(String.class);
-                                     String CustomerMobileNumber = dataSnapshot.child("CustomerMobileNumber").getValue(String.class);
-                                     String CustomerEmail = dataSnapshot.child("CustomerEmail").getValue(String.class);
-                                     String ProductName = dataSnapshot.child("ProductName").getValue(String.class);
-                                     String ProductDescription = dataSnapshot.child("ProductDescription").getValue(String.class);
-                                     String ProductImage = dataSnapshot.child("ProductImage").getValue(String.class);
-                                     String NoOfOrdersPurchased = dataSnapshot.child("NoOfOrdersPurchased").getValue(String.class);
-                                     String ProductSize = dataSnapshot.child("ProductSize").getValue(String.class);
-                                     String ProductCategoryByGender = dataSnapshot.child("ProductCategoryByGender").getValue(String.class);
-                                     String ProductCategoryByMaterial = dataSnapshot.child("ProductCategoryByMaterial").getValue(String.class);
-                                     String AmountPaid = dataSnapshot.child("AmountPaid").getValue(String.class);
-                                     String CustomerAddress = dataSnapshot.child("CustomerAddress").getValue(String.class);
-                                     String OrderId = dataSnapshot.child("OrderId").getValue(String.class);
-                                     String DateOfPurchase_DeliveryStatus = dataSnapshot.child("DateOfPurchase_DeliveryStatus").getValue(String.class);
-                                     arrayListForPastOrders.add(new D_PastOrders(CustomerName, CustomerMobileNumber, CustomerEmail, ProductName, ProductDescription, ProductImage, NoOfOrdersPurchased, ProductSize, ProductCategoryByGender, ProductCategoryByMaterial, AmountPaid, CustomerAddress, OrderId, DateOfPurchase_DeliveryStatus));
+                                     String workername=dataSnapshot.child("Workername").getValue(String.class);
+                                     String workermobile=dataSnapshot.child("Workermobile").getValue(String.class);
+                                     String workeremail=dataSnapshot.child("WorkerEmail").getValue(String.class);
+                                     String workerbio=dataSnapshot.child("Workerbio").getValue(String.class);
+                                     String workeraddress=dataSnapshot.child("Workeraddress").getValue(String.class);
+                                     String workerimage=dataSnapshot.child("ImageLocation").getValue(String.class);
+                                     D_ProfileOfWorker dShoesDataFromInternet=new D_ProfileOfWorker(workername,workermobile,workeremail,workerbio,workeraddress,workerimage);
+                                     arrayListForPastOrders.add(dShoesDataFromInternet);
                                  }
                                  else
                                      Log.e("A_MyOrders","Unable to get data form exact location");

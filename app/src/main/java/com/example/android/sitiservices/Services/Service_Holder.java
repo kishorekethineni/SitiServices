@@ -60,6 +60,26 @@ public class Service_Holder extends AppCompatActivity {
         {
             index=5;
         }
+        else if (type.equals("Painter"))
+        {
+            index=6;
+        }
+        else if (type.equals("Cook"))
+        {
+            index=7;
+        }
+        else if (type.equals("Driver"))
+        {
+            index=8;
+        }
+        else if (type.equals("BabySitter"))
+        {
+            index=9;
+        }
+        else if (type.equals("Builder"))
+        {
+            index=10;
+        }
         viewPager.setCurrentItem(index);
 
     }
@@ -87,14 +107,23 @@ public class Service_Holder extends AppCompatActivity {
                     return new Carpenter(getApplicationContext());
                 case 5:
                     return new Washing(getApplicationContext());
-
-            }
+                case 6:
+                    return new Painter(getApplicationContext());
+                case 7:
+                    return new Cook(getApplicationContext());
+                case 8:
+                    return new Driver(getApplicationContext());
+                case 9:
+                    return new BabbySitter(getApplicationContext());
+                case 10:
+                    return new Builder(getApplicationContext());
+                }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 6;
+            return 11;
         }
 
         @Nullable
@@ -119,6 +148,21 @@ public class Service_Holder extends AppCompatActivity {
                     break;
                 case 5:
                     Name="Washing";
+                    break;
+                case 6:
+                    Name="Painter";
+                    break;
+                case 7:
+                    Name="Cook";
+                    break;
+                case 8:
+                    Name="Driver";
+                    break;
+                case 9:
+                    Name="BabySitter";
+                    break;
+                case 10:
+                    Name="Builder";
                     break;
             }
             return Name;

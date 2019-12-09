@@ -75,17 +75,17 @@
                 android:orientation="horizontal"
                 android:layout_alignParentBottom="true"
                 >
+
                 <TextView
                     android:id="@+id/Price_MyCart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1200"
-                    android:textAlignment="center"
                     android:padding="12dp"
+                    android:text="Min Chrgs:50"
+                    android:textAlignment="center"
                     android:textColor="#444"
-                    android:textSize="18sp"
-                    />
+                    android:textSize="18sp" />
                 <Button
                     android:id="@+id/BuyNow_MyCart"
                     android:layout_width="match_parent"

@@ -125,12 +125,7 @@ public class A_WishList extends AppCompatActivity {
 
                 intent.putExtra("Workername",D_ProductCategoryByMaterial.get(position));
                 intent.putExtra("Workermobile",D_ProductCategoryByGender.get(position));
-                intent.putExtra("Workername",D_Workername.get(position));
-                intent.putExtra("Workermobile",D_email.get(position));
-                intent.putExtra("WorkerEmail",D_Mobileno.get(position));
-                intent.putExtra("Workerbio",D_bio.get(position));
-                intent.putExtra("Workeraddress",D_address.get(position));
-                intent.putExtra("ImageLocation",D_Image.get(position));
+
                 startActivity(intent);
             }
         });
@@ -150,6 +145,7 @@ public class A_WishList extends AppCompatActivity {
                         D_ProductCategoryByGender.add(pg);
                         D_ProductCategoryByMaterial.add(pm);
                         D_ProductLink.add(pl);
+
                         databaseReference1.child(pg).child(pm).child(pl)
                                 .addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
