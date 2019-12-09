@@ -11,7 +11,7 @@
         android:id="@+id/Toolbar_MenFragment"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="MenFootWear"
+        app:title="Services"
         app:titleTextColor="@color/White"
         android:background="@color/DodgerBlue"
         />

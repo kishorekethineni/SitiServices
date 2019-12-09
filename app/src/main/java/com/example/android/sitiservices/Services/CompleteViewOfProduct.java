@@ -14,7 +14,6 @@ import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -40,6 +39,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.android.sitiservices.Login.A_SignIn;
 import com.example.android.sitiservices.Login.D_CurrentUser;
+import com.example.android.sitiservices.Profile.A_MyOrders;
 import com.example.android.sitiservices.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -59,20 +59,28 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
     private static final String CHANNEL_1_ID ="1" ;
     // todo use imageswitcher
     ImageView ProductImage,Bookmark;
-    TextView Price,ProductTitle,ProductDescription,QuantityCounter,ProductCategory;
+    TextView mobno,name,email,bio,address,worker_catogeory;
 
     Button AddToCart;
     ImageButton Quantity_Increment,Quantity_Decrement;
     RadioGroup radioGroup;
     LinearLayout linearLayout;
-    String D_ProductTitle,D_ProductCategoryByGender,D_ProductCategoryByMaterial,D_Price,D_ProductDescription,D_Image;
-    int D_Quantity=1,D_Size=0,ActualPrice=1200;
+    //////////////
+    String D_name;
+    String D_catoegory;
+    String D_email;
+    String D_mobile;
+    String D_bio;
+    String D_Image;
+    String D_address;
+    ///////////////
+    String D_ProductCategoryByGender;
     Toolbar toolbar;
     boolean isBookMarked=false;
     String CurrentBookMarkedId;
-    String payeeAddress = "9491006254@ybl";
-    String payeeName = "First Step Corporation";
-    String transactionNote = "FirstStep corporation:";
+    String payeeAddress = "9505123217@ybl";
+    String payeeName = "Siti Services";
+    String transactionNote = "Siti Services In App";
     String amount;
     String currencyUnit = "INR";
     SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -135,58 +143,49 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
     {
         linearLayout =findViewById(R.id.linearLayout_CompleteProduct);
         ProductImage=findViewById(R.id.ImageOfProduct_Custom);
-        ProductCategory=findViewById(R.id.ProductMaterial_CompleteViewOfProduct);
-        Price=findViewById(R.id.Price);
-        ProductTitle=findViewById(R.id.NameOfProduct);
-        ProductDescription=findViewById(R.id.ProductDescription);
-        QuantityCounter=findViewById(R.id.Quantity_Counter);
-        Quantity_Increment=findViewById(R.id.Quantity_increment);
-        Quantity_Decrement=findViewById(R.id.Quantity_decrement);
+        worker_catogeory=findViewById(R.id.ProductMaterial_CompleteViewOfProduct);
+        name=findViewById(R.id.NameOfWorker);
+        mobno=findViewById(R.id.Mobno_of_worker);
+        email=findViewById(R.id.Email_of_Worker);
+        bio=findViewById(R.id.bio_of_Worker);
+        address=findViewById(R.id.Address_of_Worker);
         Bookmark=findViewById(R.id.Bookmark_Image);
         AddToCart=findViewById(R.id.AddToCart);
         toolbar=findViewById(R.id.Toolbar_complete_view_Of_Product);
-        radioGroup=findViewById(R.id.Sizes);
         AddToCart.setOnClickListener(this);
         Bookmark.setOnClickListener(this);
-        Quantity_Increment.setOnClickListener(this);
-        Quantity_Decrement.setOnClickListener(this);
-        QuantityCounter.setText("1");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton=group.findViewById(checkedId);
-                if (radioButton!=null)
-                    D_Size=Integer.parseInt(radioButton.getText().toString());
-            }
-        });
+
     }
     private void gettingDataFromIntent()
     {
         Intent intent=getIntent();
         ProductLink=intent.getStringExtra("ProductLink");
         D_ProductCategoryByGender=intent.getStringExtra("ProductCategoryByGender");
-        D_ProductCategoryByMaterial=intent.getStringExtra("ProductCategoryByMaterial");
-        D_ProductTitle=intent.getStringExtra("ProductTitle");
-        D_Price=intent.getStringExtra("ProductPrice");
-        D_ProductDescription=intent.getStringExtra("ProductDescription");
+        D_catoegory=intent.getStringExtra("ProductCategoryByMaterial");
+        D_name=intent.getStringExtra("Workername");
+        D_bio=intent.getStringExtra("Workerbio");
+        D_email=intent.getStringExtra("WorkerEmail");
         D_Image=intent.getStringExtra("ImageLocation");
-        D_Quantity=Integer.parseInt(intent.getExtras().getString("Quantity","1"));
-        D_Size=Integer.parseInt(intent.getExtras().getString("SizeOfProduct","0"));
+        D_address=intent.getStringExtra("Workeraddress");
+       //D_mobile=Integer.parseInt(intent.getExtras().getString("Workermobile","0"));
+        D_mobile= intent.getStringExtra("Workermobile");
+
     }
     private void settingDataIntoViews()
     {
         Glide.with(getApplicationContext()).load(D_Image).into(ProductImage);
-        ProductTitle.setText(D_ProductTitle);
-        ProductDescription.setText(D_ProductDescription);
-        QuantityCounter.setText(""+D_Quantity);
-        Price.setText(D_Price);
-        ProductCategory.setText(D_ProductCategoryByGender+" - "+D_ProductCategoryByMaterial);
+        name.setText(D_name);
+        email.setText(D_email);
+        mobno.setText(D_mobile);
+        address.setText(D_address);
+        bio.setText(D_bio);
+        worker_catogeory.setText(D_catoegory);
     }
     @Override
     public void onClick(View v) {
@@ -199,19 +198,12 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
             }
             else
             {
-                D_Bookmarkshoe d_bookmarkshoe=new D_Bookmarkshoe(ProductLink,D_ProductCategoryByGender,D_ProductCategoryByMaterial);
+                D_Bookmarkshoe d_bookmarkshoe=new D_Bookmarkshoe(ProductLink,D_ProductCategoryByGender,D_catoegory);
                 setAddToCart(d_bookmarkshoe);
                 isInCart=true;
             }
         }
-        else if (v.getId()==R.id.Quantity_increment)
-        {
-            setQuantity_Increment();
-        }
-        else if (v.getId()==R.id.Quantity_decrement)
-        {
-            setQuantity_Decrement();
-        }
+
         else if (v.getId()==R.id.Bookmark_Image)
         {
             if (isBookMarked)
@@ -221,7 +213,7 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
             }
             else
             {
-                D_Bookmarkshoe d_bookmarkshoe=new D_Bookmarkshoe(ProductLink,D_ProductCategoryByGender,D_ProductCategoryByMaterial);
+                D_Bookmarkshoe d_bookmarkshoe=new D_Bookmarkshoe(ProductLink,D_ProductCategoryByGender,D_catoegory);
                 setBookmark(d_bookmarkshoe);
                 isBookMarked=true;
             }
@@ -234,44 +226,16 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
         {
             Intent shareintent=new Intent(Intent.ACTION_SEND);
             shareintent.setType("text/plain");
-            shareintent.putExtra(Intent.EXTRA_TEXT,"Check Out this Awesome Product "+D_ProductTitle+" In FirstStep");
+            shareintent.putExtra(Intent.EXTRA_TEXT,"Book The Best "+D_catoegory+" name="+D_name+" In SitiServices");
             shareintent.putExtra(Intent.EXTRA_SUBJECT,"Download this  app");
             startActivity(Intent.createChooser(shareintent,"choose one among this to share"));
         }
     }
 
-    private void setQuantity_Increment() {
-        int n1 = Integer.parseInt(QuantityCounter.getText().toString());
-        if (n1 >= 3) {
-            QuantityCounter.setText("3");
-            D_Quantity =3;
-        } else {
-            n1++;
-            QuantityCounter.setText(""+n1);
-            D_Quantity=n1;
-        }
-    }
-    private void setQuantity_Decrement() {
-        int n2 = Integer.parseInt(QuantityCounter.getText().toString());
-        if (n2>1) {
-            n2--;
-            QuantityCounter.setText(""+n2);
-            D_Quantity=1;
-        } else {
-            QuantityCounter.setText("1");
-            D_Quantity=1;
-        }
-    }
 
-    private boolean checkSizeChecked()
-    {
-        RadioButton radioButton= (RadioButton) radioGroup.findViewById(radioGroup.getCheckedRadioButtonId());
-        if (radioButton==null) {
-            Snackbar.make(linearLayout,"Please Choose Dimension's of product",Snackbar.LENGTH_LONG).show();
-            return false;
-        }else
-            return true;
-    }
+
+
+
     private boolean checkAddressChecked()
     {
         if (!TextUtils.isEmpty(D_address_For_Shipping))
@@ -290,43 +254,14 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void PaymentViaPaytm()
-    {
-        if (checkSizeChecked())
-        {
-            ActualPrice=D_Quantity*Integer.parseInt(D_Price);
-            Intent paytmIntent=new Intent();
-            Bundle bundle=new Bundle();
-            bundle.putDouble("nativeSdkForMerchantAmount", ActualPrice);
-            bundle.putString("orderid", D_OrderId);
-            bundle.putString("txnToken", "123");
-            bundle.putString("mid", "");
-            paytmIntent.setComponent(new ComponentName("net.one97.paytm", "net.one97.paytm.AJRJarvisSplash"));
-            paytmIntent.putExtra("paymentmode", 2); // You must have to pass hard coded 2 here, Else your transaction would not proceed.
-            paytmIntent.putExtra("bill", bundle);
-            startActivityForResult(paytmIntent,1);
-        }
-        else
-            Toast.makeText(this, "please select Size!!", Toast.LENGTH_SHORT).show();
-    }
+
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1)
-        {
-            if (resultCode==0)
-            {
-                Toast.makeText(getApplicationContext(),"Payment Failed",Toast.LENGTH_LONG).show();
-                onBackPressed();
-            }
-            else if (resultCode==1)
-            {
-                Toast.makeText(this, "Payment success", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else if (requestCode==2)
+
+         if (requestCode==2)
         {
             Log.d("CompleteViewOfProduct", "onActivityResult: requestCode: " + requestCode);
             Log.d("CompleteViewOfProduct", "onActivityResult: resultCode: " + resultCode);
@@ -340,7 +275,7 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
                 if (res.toLowerCase().contains(search.toLowerCase())) {
                     Toast.makeText(this, "Payment Successful", Toast.LENGTH_SHORT).show();
                     Log.e("CompleteViewOfProduct","Payment Successful");
-                    D_PastOrders dPastOrders=new D_PastOrders(D_CurrentUser.getName(),D_CurrentUser.getPhone(),D_CurrentUser.getEmail(),D_address_For_Shipping,D_ProductTitle,D_ProductDescription,D_Image,""+D_Quantity,""+D_Size,D_ProductCategoryByGender,D_ProductCategoryByMaterial,amount,D_OrderId,D_Date+"_"+"Pending");
+                    D_PastOrders dPastOrders=new D_PastOrders(D_CurrentUser.getName(),D_CurrentUser.getPhone(),D_CurrentUser.getEmail(),D_address_For_Shipping,D_name,D_email,D_Image,""+D_address,""+D_mobile,D_catoegory,D_Date,amount,D_OrderId,D_Date+"_"+"Pending");
                     new AsyncTaskToStorePurchasedProduct().execute(dPastOrders);
                 } else {
                     Toast.makeText(this, "Payment Failed", Toast.LENGTH_SHORT).show();
@@ -372,7 +307,7 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
                 }
                 else
                 {
-                    String number="+919866772522";
+                    String number="+919177919976";
                     Intent intent4=new Intent(Intent.ACTION_CALL);
                     intent4.setData(Uri.parse("tel:"+number));
                     startActivity(intent4);
@@ -398,11 +333,13 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
 
 
     private void BuyNowPage() {
-        if (checkSizeChecked() && checkAddressChecked())
+        if (checkAddressChecked())
         {
-            int p=Integer.parseInt(D_Price)*D_Quantity;
-            amount=""+p;
-            String fakeamount="1";
+
+            Toast.makeText(this, "Booked", Toast.LENGTH_SHORT).show();
+            //int p=Integer.parseInt(D_Price)*D_Quantity;
+            //amount=""+p;
+            String fakeamount="50";//min amount
             Uri uri = Uri.parse("upi://pay?pa="+payeeAddress+"&pn="+payeeName+"&tn="+transactionNote+
                     "&am="+fakeamount+"&cu="+currencyUnit);
             Log.d("CompleteViewOfProduct", "onClick: uri: "+uri);
@@ -448,7 +385,7 @@ public class CompleteViewOfProduct extends AppCompatActivity implements View.OnC
         PendingIntent pendingIntent=PendingIntent.getActivity(getApplicationContext(),0,intent,0);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(getApplicationContext(),CHANNEL_1_ID)
                 .setContentTitle("Payment")
-                .setContentText("You have purchased "+D_ProductTitle+" You will soon receive this Product")
+                .setContentText("You have Booked "+D_name+" You will soon get the work finished")
                 .setStyle(new NotificationCompat.BigTextStyle().bigText("Payment is Success"))
                 .setChannelId(CHANNEL_1_ID)
                 .setAutoCancel(true)

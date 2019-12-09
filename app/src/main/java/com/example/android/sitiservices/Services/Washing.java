@@ -38,7 +38,7 @@ public class Washing extends Fragment {
         void onItemClickListenerOfCardView(int position);
     }
 
-    ArrayList<D_ShoesDataFromInternet> arrayListCasual=new ArrayList<>();
+    ArrayList<D_ProfileOfWorker> arrayListCasual=new ArrayList<>();
     ArrayList<String> stringArrayList=new ArrayList<>();
     Context context;
     MyAdapterForCasualmen myAdapterCasual;
@@ -100,12 +100,15 @@ public class Washing extends Fragment {
             public void onItemClickListenerOfCardView(int position) {
                 Intent intent=new Intent(getContext(),CompleteViewOfProduct.class);
                 intent.putExtra("ProductLink",stringArrayList.get(position));
-                intent.putExtra("ImageLocation",arrayListCasual.get(position).ImageLocation);
-                intent.putExtra("ProductTitle",arrayListCasual.get(position).ProductTitleOfShoe);
-                intent.putExtra("ProductPrice",arrayListCasual.get(position).ProductPriceOfShoe);
-                intent.putExtra("ProductDescription",arrayListCasual.get(position).ProductDescriptionOfShoe);
-                intent.putExtra("ProductCategoryByGender","MenFootWear");
-                intent.putExtra("ProductCategoryByMaterial","Casual");
+                intent.putExtra("ImageLocation",arrayListCasual.get(position).WorkerImage);
+                intent.putExtra("Workername",arrayListCasual.get(position).WorkerName);
+                intent.putExtra("Workermobile",arrayListCasual.get(position).WorkerMobileNumber);
+                intent.putExtra("WorkerEmail",arrayListCasual.get(position).WorkerEmail);
+                intent.putExtra("Workerbio",arrayListCasual.get(position).WorkerBio);
+                intent.putExtra("Workeraddress",arrayListCasual.get(position).WorkerAddress);
+               // intent.putExtra("ProductCategoryByGender","MenFootWear");
+                intent.putExtra("ProductCategoryByMaterial","Washing");
+                intent.putExtra("ProductCategoryByGender","Workers");
                 startActivity(intent);
             }
         });
@@ -113,7 +116,7 @@ public class Washing extends Fragment {
 
     public void getArrayListData()
     {
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MenFootWear").child("Casual");
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Workers").child("Washing");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -124,12 +127,9 @@ public class Washing extends Fragment {
                     if (dataSnapshot1.exists())
                     {
                         stringArrayList.add(dataSnapshot1.getKey());
-                        String productDescriptionOfShoe=dataSnapshot1.child("ProductDescriptionOfShoe").getValue(String.class);
-                        String ProductPrice=dataSnapshot1.child("ProductPriceOfShoe").getValue(String.class);
-                        String productTitle=dataSnapshot1.child("ProductTitleOfShoe").getValue(String.class);
-                        String imageLocation=dataSnapshot1.child("ImageLocation").getValue(String.class);
-                        D_ShoesDataFromInternet dShoesDataFromInternet=new D_ShoesDataFromInternet(productTitle,ProductPrice,productDescriptionOfShoe,imageLocation);
-                        arrayListCasual.add(dShoesDataFromInternet);
+                        D_ProfileOfWorker d_profileOfWorker=dataSnapshot1.getValue(D_ProfileOfWorker.class);
+                        Log.e("Hey",d_profileOfWorker.WorkerName);
+                        arrayListCasual.add(d_profileOfWorker);
                     }
                 }
                 myAdapterCasual.notifyDataSetChanged();
@@ -147,13 +147,13 @@ public class Washing extends Fragment {
 
     class MyAdapterForCasualmen extends RecyclerView.Adapter<MyAdapterForCasualmen.ViewHolderClass> {
 
-        ArrayList<D_ShoesDataFromInternet> arrayList;
+        ArrayList<D_ProfileOfWorker> arrayList;
         OnCardViewItemClickListener onCardViewItemClickListener;
         public void setOnCardViewItemClickListener(OnCardViewItemClickListener onCardViewItemClickListener1)
         {
             this.onCardViewItemClickListener=onCardViewItemClickListener1;
         }
-        public MyAdapterForCasualmen(ArrayList<D_ShoesDataFromInternet> arrayList1)
+        public MyAdapterForCasualmen(ArrayList<D_ProfileOfWorker> arrayList1)
         {
             this.arrayList=arrayList1;
         }
@@ -167,9 +167,9 @@ public class Washing extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
-            holder.Name.setText(arrayList.get(position).ProductTitleOfShoe);
-            holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
-            Glide.with(getContext()).load(arrayList.get(position).ImageLocation).into(holder.ProductImage);
+            holder.Name.setText(arrayList.get(position).WorkerName);
+          //  holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
+            Glide.with(getContext()).load(arrayList.get(position).WorkerImage).into(holder.ProductImage);
 
         }
 

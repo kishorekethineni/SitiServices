@@ -14,27 +14,27 @@
         app:title="Product"
         app:titleTextColor="@color/White"
         android:background="@color/DodgerBlue"
-        app:navigationIcon="@drawable/ic_launcher_background"
+        app:navigationIcon="@drawable/back_navigation"
         app:menu="@menu/menu_res_for_toolbar"
         />
     <ImageView
         android:id="@+id/Bookmark_Image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_wishlist"
         />
     <ImageView
         android:id="@+id/ImageOfProduct_Custom"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_account_circle_black_24dp"
         />
     <ImageView
         android:id="@+id/Share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_share"
         android:onClick="onClick"
         />
     <ScrollView
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="4dp"
-        android:background="@drawable/ic_launcher_background">
+        android:background="@drawable/bg">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,14 +73,14 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_name" />
 
                     <TextView
-                        android:id="@+id/NameOfProduct"
+                        android:id="@+id/NameOfWorker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:text="Nike"
+                        android:text="name"
                         android:textColor="#444"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -102,14 +102,14 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_coin" />
 
                     <TextView
-                        android:id="@+id/Price"
+                        android:id="@+id/Mobno_of_worker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:text="Rs.400"
+                        android:text="mobile no"
                         android:textColor="#444"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -128,18 +128,18 @@
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/SignOutImage"
+                        android:id="@+id/SignOutImag"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/ic_description" />
 
                     <TextView
-                        android:id="@+id/ProductDescription"
+                        android:id="@+id/Email_of_Worker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
-                        android:text="First Best Ever shoe"
+                        android:text="email"
                         android:maxLines="3"
                         android:textColor="#444"
                         android:textSize="20sp" />
@@ -151,51 +151,29 @@
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider" />
                 <LinearLayout
+                    android:id="@+id/ProductDescription_CompleteViewOfProduct_Layot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp">
+
                     <ImageView
+                        android:id="@+id/SignOutIma"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_launcher_background" />
-                    <LinearLayout
-                        android:id="@+id/LinearLayout_Quantity"
+                        android:src="@drawable/ic_description" />
+
+                    <TextView
+                        android:id="@+id/bio_of_Worker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginStart="30dp"
-                        >
-                        <ImageButton
-                            android:id="@+id/Quantity_decrement"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/White"
-                            android:src="@drawable/ic_launcher_background"
-                            android:layout_margin="10dp"
-                            android:onClick="onClick"
-                            />
-                        <TextView
-                            android:id="@+id/Quantity_Counter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textSize="25sp"
-                            android:textColor="#444"
-                            android:padding="5dp"
-                            />
-                        <ImageButton
-                            android:id="@+id/Quantity_increment"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_launcher_background"
-                            android:background="@color/White"
-                            android:layout_margin="10dp"
-                            android:onClick="onClick"
-                            />
-                    </LinearLayout>
+                        android:text="bio"
+                        android:maxLines="3"
+                        android:textColor="#444"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -204,61 +182,29 @@
                     android:layout_height="1dp"
                     android:background="?android:attr/listDivider" />
                 <LinearLayout
-                    android:id="@+id/SizeLabel"
+                    android:id="@+id/ProductDescription_CompleteViewOfProduct_Layou"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="16dp">
+
                     <ImageView
+                        android:id="@+id/SignOutImage"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_launcher_background" />
-                    <LinearLayout
+                        android:src="@drawable/ic_description" />
+
+                    <TextView
+                        android:id="@+id/Address_of_Worker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/LinearLayout_Sizes"
                         android:layout_marginStart="30dp"
-                        android:orientation="horizontal"
-                        >
-                        <RadioGroup
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:id="@+id/Sizes"
-                            android:textAlignment="center"
-                            >
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/Size_7"
-                                android:text="7"
-                                android:textSize="18sp"
-                                />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="8"
-                                android:id="@+id/Size_8"
-                                android:textSize="18sp"
-                                />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="9"
-                                android:id="@+id/Size_9"
-                                android:textSize="18sp"
-                                />
-                            <RadioButton
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="10"
-                                android:id="@+id/Size_10"
-                                android:textSize="18sp"
-                                />
-                        </RadioGroup>
-                    </LinearLayout>
+                        android:text="Address"
+                        android:maxLines="3"
+                        android:textColor="#444"
+                        android:textSize="20sp" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -277,7 +223,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:src="@drawable/gps_icon" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

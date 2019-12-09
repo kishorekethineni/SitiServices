@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.android.sitiservices.R;
@@ -17,14 +18,50 @@ import static java.security.AccessController.getContext;
 
 public class Service_Holder extends AppCompatActivity {
 
+    String type;
+    ViewPager viewPager;
+    TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service__holder);
-        ViewPager viewPager=findViewById(R.id.ViewPagerInMenFragment);
+         viewPager=findViewById(R.id.ViewPagerInMenFragment);
         viewPager.setAdapter(new MyAdapterForMenFragment(getSupportFragmentManager()));
-        TabLayout tabLayout=findViewById(R.id.TabLayoutInMenFragment);
+         tabLayout=findViewById(R.id.TabLayoutInMenFragment);
         tabLayout.setupWithViewPager(viewPager);
+        getDataFromIntent();
+    }
+    private void getDataFromIntent()
+    {
+        int index=0;
+        Intent intent=getIntent();
+        type=intent.getStringExtra("Type");
+        if (type.equals("Amc"))
+        {
+           index=0;
+        }
+        else if (type.equals("Electrician"))
+        {
+            index=1;
+        }
+        else if (type.equals("Plumber"))
+        {
+            index=2;
+        }
+        else if (type.equals("Refrigirator"))
+        {
+            index=3;
+        }
+        else if (type.equals("Carpenter"))
+        {
+            index=4;
+        }
+        else if (type.equals("Washing"))
+        {
+            index=5;
+        }
+        viewPager.setCurrentItem(index);
+
     }
     private class MyAdapterForMenFragment extends FragmentPagerAdapter {
 
@@ -66,22 +103,22 @@ public class Service_Holder extends AppCompatActivity {
             String Name=null;
             switch (position) {
                 case 0:
-                    Name="Formal";
+                    Name="Amc";
                     break;
                 case 1:
-                    Name="Sneakers";
+                    Name="Electrician";
                     break;
                 case 2:
-                    Name="Sports";
+                    Name="Plumber";
                     break;
                 case 3:
-                    Name="Smart";
+                    Name="Refrigirator";
                     break;
                 case 4:
-                    Name="Ethnic";
+                    Name="Carpenter";
                     break;
                 case 5:
-                    Name="Casual";
+                    Name="Washing";
                     break;
             }
             return Name;

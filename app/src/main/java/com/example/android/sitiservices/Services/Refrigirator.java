@@ -47,7 +47,7 @@ public class Refrigirator extends Fragment {
     {
         void onItemClickListenerOfCardView(int position);
     }
-    ArrayList<D_ShoesDataFromInternet> arrayListSmart=new ArrayList<>();
+    ArrayList<D_ProfileOfWorker> arrayListSmart=new ArrayList<>();
     ArrayList<String> stringArrayList=new ArrayList<>();
     Context context;
     MyAdapterForSmartMen myAdapterSmart;
@@ -108,12 +108,14 @@ public class Refrigirator extends Fragment {
             public void onItemClickListenerOfCardView(int position) {
                 Intent intent=new Intent(getContext(),CompleteViewOfProduct.class);
                 intent.putExtra("ProductLink",stringArrayList.get(position));
-                intent.putExtra("ImageLocation",arrayListSmart.get(position).ImageLocation);
-                intent.putExtra("ProductTitle",arrayListSmart.get(position).ProductTitleOfShoe);
-                intent.putExtra("ProductPrice",arrayListSmart.get(position).ProductPriceOfShoe);
-                intent.putExtra("ProductDescription",arrayListSmart.get(position).ProductDescriptionOfShoe);
-                intent.putExtra("ProductCategoryByGender","MenFootWear");
-                intent.putExtra("ProductCategoryByMaterial","Smart");
+                intent.putExtra("ImageLocation",arrayListSmart.get(position).WorkerImage);
+                intent.putExtra("Workername",arrayListSmart.get(position).WorkerName);
+                intent.putExtra("Workermobile",arrayListSmart.get(position).WorkerMobileNumber);
+                intent.putExtra("WorkerEmail",arrayListSmart.get(position).WorkerEmail);
+                intent.putExtra("Workerbio",arrayListSmart.get(position).WorkerBio);
+                intent.putExtra("Workeraddress",arrayListSmart.get(position).WorkerAddress);
+                intent.putExtra("ProductCategoryByMaterial","Refrigirator");
+                intent.putExtra("ProductCategoryByGender","Workers");
                 startActivity(intent);
             }
         });
@@ -121,7 +123,7 @@ public class Refrigirator extends Fragment {
 
     public void getArrayListData()
     {
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MenFootWear").child("Smart");
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Workers").child("Refrigirator");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -132,12 +134,9 @@ public class Refrigirator extends Fragment {
                     if (dataSnapshot1.exists())
                     {
                         stringArrayList.add(dataSnapshot1.getKey());
-                        String productDescriptionOfShoe=dataSnapshot1.child("ProductDescriptionOfShoe").getValue(String.class);
-                        String ProductPrice=dataSnapshot1.child("ProductPriceOfShoe").getValue(String.class);
-                        String productTitle=dataSnapshot1.child("ProductTitleOfShoe").getValue(String.class);
-                        String imageLocation=dataSnapshot1.child("ImageLocation").getValue(String.class);
-                        D_ShoesDataFromInternet dShoesDataFromInternet=new D_ShoesDataFromInternet(productTitle,ProductPrice,productDescriptionOfShoe,imageLocation);
-                        arrayListSmart.add(dShoesDataFromInternet);
+                        D_ProfileOfWorker d_profileOfWorker=dataSnapshot1.getValue(D_ProfileOfWorker.class);
+                        Log.e("Hey",d_profileOfWorker.WorkerName);
+                        arrayListSmart.add(d_profileOfWorker);
                     }
                 }
                 myAdapterSmart.notifyDataSetChanged();
@@ -154,13 +153,13 @@ public class Refrigirator extends Fragment {
     {
         @Override
         protected Void doInBackground(Void... strings) {
-            DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("MenFootWear").child("Smart");
-            //arrayListSmart.clear();
+            DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Workers").child("Refrigirator");
+            arrayListSmart.clear();
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
-                        D_ShoesDataFromInternet dShoesDataFromInternet = dataSnapshot1.getValue(D_ShoesDataFromInternet.class);
+                        D_ProfileOfWorker dShoesDataFromInternet = dataSnapshot1.getValue(D_ProfileOfWorker.class);
                         if (dShoesDataFromInternet != null) {
                             arrayListSmart.add(dShoesDataFromInternet);
                             Log.e("MenFragment","Going inside");
@@ -184,9 +183,9 @@ public class Refrigirator extends Fragment {
     class MyAdapterForSmartMen extends RecyclerView.Adapter<MyAdapterForSmartMen.ViewHolderClass>
     {
 
-        ArrayList<D_ShoesDataFromInternet> arrayList;
+        ArrayList<D_ProfileOfWorker> arrayList;
         OnCardViewItemClickListener onCardViewItemClickListener;
-        public MyAdapterForSmartMen(ArrayList<D_ShoesDataFromInternet> arrayList1)
+        public MyAdapterForSmartMen(ArrayList<D_ProfileOfWorker> arrayList1)
         {
             this.arrayList=arrayList1;
         }
@@ -205,9 +204,9 @@ public class Refrigirator extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
 
-            holder.Name.setText(arrayList.get(position).ProductTitleOfShoe);
-            holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
-            Glide.with(getContext()).load(arrayList.get(position).ImageLocation).into(holder.ProductImage);
+            holder.Name.setText(arrayList.get(position).WorkerName);
+           // holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
+            Glide.with(getContext()).load(arrayList.get(position).WorkerImage).into(holder.ProductImage);
         }
 
 

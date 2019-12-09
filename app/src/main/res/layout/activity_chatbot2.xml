@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/backs"
+    >
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/chitti"
+        android:layout_gravity="center"
+        android:background="#918194"
+        />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="570dp"
+        android:id="@+id/listview"
+        >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageview"
+            android:src="@drawable/bot"/>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:hint="enter query"
+            android:background="#E8E8ED"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnsend"
+            android:src="@drawable/ic_send_24dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

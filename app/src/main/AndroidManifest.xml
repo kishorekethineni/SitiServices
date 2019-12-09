@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.sitiservices">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -17,8 +19,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Services.Service_Holder"></activity>
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".Chatbot"></activity>
+        <activity android:name=".Profile.ProfileSection" />
+        <activity android:name=".Services.Service_Holder" />
         <activity android:name=".Login.CustomPagerAdapter" />
         <activity android:name=".Login.A_ResetPassword" />
         <activity android:name=".Login.A_signUp" />
@@ -38,6 +42,14 @@
         <activity android:name=".Driver" />
         <activity android:name=".BabbySitter" />
         <activity android:name=".Painter" />
+        <activity android:name=".Profile.A_AccountSettings" />
+        <activity android:name=".Profile.A_AddNewAddress" />
+        <activity android:name=".Profile.A_MyAddresses" />
+        <activity android:name=".Profile.A_WishList" />
+        <activity android:name=".Profile.A_MyCart" />
+        <activity android:name=".Profile.A_MyOrders" />
+        <activity android:name=".Utils.Converter" />
+        <activity android:name=".Services.CompleteViewOfProduct" />
         <activity android:name=".Login.A_SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -427,7 +427,7 @@ public class A_SignIn extends AppCompatActivity implements View.OnClickListener 
                         D_UserDataToFirebase d_currentUser=dataSnapshot.getValue(D_UserDataToFirebase.class);
                         if (d_currentUser!=null) {
                             setData(d_currentUser);
-                            Log.e("Asynctask",d_currentUser.Email);
+                            //Log.e("Asynctask",d_currentUser.Email);
                             CommonClassForSharedPreferences.setDataIntoSharedPreference(getApplicationContext());
                         }
                         else

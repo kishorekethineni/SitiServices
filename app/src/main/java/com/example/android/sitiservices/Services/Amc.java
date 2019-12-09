@@ -47,7 +47,7 @@ public class Amc extends Fragment {
     {
         void onItemClickListenerOfCardView(int position);
     }
-    ArrayList<D_ShoesDataFromInternet> arrayListFormal=new ArrayList<>();
+    ArrayList<D_ProfileOfWorker> arrayListFormal=new ArrayList<>();
     ArrayList<String> stringArrayList=new ArrayList<>();
 
     Context context;
@@ -110,12 +110,14 @@ public class Amc extends Fragment {
             public void onItemClickListenerOfCardView(int position) {
                 Intent intent=new Intent(getContext(),CompleteViewOfProduct.class);
                 intent.putExtra("ProductLink",stringArrayList.get(position));
-                intent.putExtra("ImageLocation",arrayListFormal.get(position).ImageLocation);
-                intent.putExtra("ProductTitle",arrayListFormal.get(position).ProductTitleOfShoe);
-                intent.putExtra("ProductPrice",arrayListFormal.get(position).ProductPriceOfShoe);
-                intent.putExtra("ProductDescription",arrayListFormal.get(position).ProductDescriptionOfShoe);
-                intent.putExtra("ProductCategoryByGender","MenFootWear");
-                intent.putExtra("ProductCategoryByMaterial","Formal");
+                intent.putExtra("ImageLocation",arrayListFormal.get(position).WorkerImage);
+                intent.putExtra("Workername",arrayListFormal.get(position).WorkerName);
+                intent.putExtra("Workermobile",arrayListFormal.get(position).WorkerMobileNumber);
+                intent.putExtra("WorkerEmail",arrayListFormal.get(position).WorkerEmail);
+                intent.putExtra("Workerbio",arrayListFormal.get(position).WorkerBio);
+                intent.putExtra("Workeraddress",arrayListFormal.get(position).WorkerAddress);
+                intent.putExtra("ProductCategoryByMaterial","Amc");
+                intent.putExtra("ProductCategoryByGender","Workers");
                 startActivity(intent);
             }
         });
@@ -123,7 +125,7 @@ public class Amc extends Fragment {
 
     public void getArrayListData()
     {
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MenFootWear").child("Formal");
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Workers").child("Amc");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -134,16 +136,13 @@ public class Amc extends Fragment {
                     if (dataSnapshot1.exists())
                     {
                         stringArrayList.add(dataSnapshot1.getKey());
-                        String productDescriptionOfShoe=dataSnapshot1.child("ProductDescriptionOfShoe").getValue(String.class);
-                        String ProductPrice=dataSnapshot1.child("ProductPriceOfShoe").getValue(String.class);
-                        String productTitle=dataSnapshot1.child("ProductTitleOfShoe").getValue(String.class);
-                        String imageLocation=dataSnapshot1.child("ImageLocation").getValue(String.class);
-                        D_ShoesDataFromInternet dShoesDataFromInternet=new D_ShoesDataFromInternet(productTitle,ProductPrice,productDescriptionOfShoe,imageLocation);
-                        arrayListFormal.add(dShoesDataFromInternet);
+                        D_ProfileOfWorker d_profileOfWorker=dataSnapshot1.getValue(D_ProfileOfWorker.class);
+                        Log.e("Hey",d_profileOfWorker.WorkerName);
+                        arrayListFormal.add(d_profileOfWorker);
                     }
                     else
                     {
-
+                        Log.e("Hey","Datasnapshot does not exist!!");
                     }
                 }
                 myAdapterForFormal.notifyDataSetChanged();
@@ -159,9 +158,9 @@ public class Amc extends Fragment {
     class MyAdapterForFormal extends RecyclerView.Adapter<MyAdapterForFormal.ViewHolderClass>
     {
 
-        ArrayList<D_ShoesDataFromInternet> arrayList;
+        ArrayList<D_ProfileOfWorker> arrayList;
         OnCardViewItemClickListener onCardViewItemClickListener;
-        public MyAdapterForFormal(ArrayList<D_ShoesDataFromInternet> arrayList1)
+        public MyAdapterForFormal(ArrayList<D_ProfileOfWorker> arrayList1)
         {
             this.arrayList=arrayList1;
         }
@@ -180,9 +179,9 @@ public class Amc extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
 
-            holder.Name.setText(arrayList.get(position).ProductTitleOfShoe);
-            holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
-            Glide.with(getContext()).load(arrayList.get(position).ImageLocation).placeholder(R.color.CementGray).transition(DrawableTransitionOptions.withCrossFade(5000)).into(holder.ProductImage);
+            holder.Name.setText(arrayList.get(position).WorkerName);
+            //holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
+            Glide.with(getContext()).load(arrayList.get(position).WorkerImage).placeholder(R.color.CementGray).transition(DrawableTransitionOptions.withCrossFade(5000)).into(holder.ProductImage);
         }
 
 

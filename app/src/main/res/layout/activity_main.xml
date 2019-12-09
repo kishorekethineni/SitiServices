@@ -13,16 +13,16 @@
     android:orientation="vertical">
 
 
+
     <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
         android:id="@+id/view_pager"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
 
 
+    </androidx.viewpager.widget.ViewPager>
 
-</androidx.viewpager.widget.ViewPager>
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:orientation="vertical"
@@ -459,46 +459,75 @@
 
    </androidx.cardview.widget.CardView>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:orientation="horizontal"
-    android:background="@color/white">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="35dp">
-        <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/homeicon"
-            android:layout_marginLeft="6dp"/>
-        <TextView
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:id="@+id/profileicon"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:layout_marginLeft="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/black"
+                android:text="Profile"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="55dp">
-        <ImageView
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="60dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:src="@drawable/feedback"
+                android:layout_marginRight="5dp"
+                android:id="@+id/feedbackicon"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Feedback"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/helpicon"
-            android:layout_marginLeft="6dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Help"/>
-    </LinearLayout>
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="42dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:src="@drawable/customercare"
+                android:id="@+id/cistomercareicon"
+                android:onClick="customercare"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:textColor="@color/black"
+                android:text="Customer"/>
+        </LinearLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
 </LinearLayout>
 </androidx.core.widget.NestedScrollView>

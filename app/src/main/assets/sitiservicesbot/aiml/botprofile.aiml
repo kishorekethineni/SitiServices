@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+	<!-- insert your AIML categories here -->
+	
+	 <category>
+    <pattern>i love you</pattern>
+    <template>love u toooooo</template>
+  </category>
+  
+   <category>
+    <pattern>job</pattern>
+    <template>im a siti services virtual assistant.</template>
+  </category>
+  
+   <category>
+    <pattern>hi</pattern>
+    <template>hi nice to see you how can i help you?</template>
+  </category>
+  
+   <category>
+    <pattern>hello</pattern>
+    <template>hello there hpw can i help you</template>
+  </category>
+  
+   <category>
+    <pattern>services</pattern>
+    <template>I provide lot of services.</template>
+  </category>
+  
+   <category>
+    <pattern>what type of services you provide</pattern>
+    <template>plumber,
+    carpenter,electrician and many more...</template>
+    
+  </category>
+  
+  <category>
+    <pattern>services list</pattern>
+    <template>plumber,
+    carpenter,electrician and many more...</template>
+    
+  </category>
+  
+  <category>
+    <pattern>what is your name</pattern>
+    <template>Sitiservices assistant</template>
+    
+  </category>
+  
+   <category>
+    <pattern>*</pattern>
+    <template>I dont no the answer but iam learning it.... :)</template>
+  </category>
+  
+  <category>
+    <pattern>customer care number</pattern>
+    <template>9505123217</template>
+  </category>
+  
+  <category>
+    <pattern>ok</pattern>
+    <template>hmmmmm</template>
+  </category>
+  
+   <category>
+    <pattern>bye</pattern>
+    <template>c u....</template>
+  </category>
+  
+  <category>
+    <pattern>
+       creator
+       </pattern>
+    <template>Abhilash guptha</template>
+  </category>
+  
+  
+  <category>
+    <pattern>
+       owner
+       </pattern>
+    <template>Abhilash guptha</template>
+  </category>
+  
+  <category>
+    <pattern>
+       what is your age
+       </pattern>
+    <template>i dont have an age</template>
+  </category>
+  
+  <category>
+    <pattern>
+       how do i book the service
+       </pattern>
+    <template>go to home page there you can see many services you can book from there</template>
+  </category>
+  
+  
+   <category>
+    <pattern>
+       how to book a service
+       </pattern>
+    <template>go to home page there you can see many services you can book from there</template>
+  </category>
+  
+  
+   <category>
+    <pattern>
+       book service
+       </pattern>
+    <template>go to home page there you can see many services you can book from there</template>
+  </category>
+  
+  
+  <category>
+    <pattern>
+       book service
+       </pattern>
+    <template>go to home page there you can see many services you can book from there</template>
+  </category>
+  
+  
+  <category>
+    <pattern>
+       who created you
+       </pattern>
+    <template>Abhi</template>
+  </category>
+  
+  <category>
+    <pattern>
+       developers
+       </pattern>
+    <template>Abhilash,Kishore,Abdul.. i will be always thankful to them</template>
+  </category>
+  
+  <category>
+    <pattern>
+      what is your project name
+       </pattern>
+    <template>siti services</template>
+  </category>
+  
+  
+  <category>
+    <pattern>
+      who are the developers of your project
+       </pattern>
+    <template>Abhilash,Kishore,Abdul.. i will be always thankful to them</template>
+  </category>
+  
+  
+  
+   <category>
+    <pattern>
+     your nick name
+       </pattern>
+    <template>chittti....the sitiservice robot</template>
+  </category>
+  
+   <category>
+    <pattern>
+     help
+       </pattern>
+    <template>abhilashguptha5610@gmail.com</template>
+  </category>
+  
+  
+  <category>
+    <pattern>
+     help line
+       </pattern>
+    <template>abhilashguptha5610@gmail.com</template>
+  </category>
+  
+  
+ 
+  
+  
+   <category>
+    <pattern>
+   where are you from
+       </pattern>
+    <template>warangal</template>
+  </category>
+  
+  <category>
+    <pattern>
+   your location
+       </pattern>
+    <template>lpu</template>
+  </category>
+  
+   <category>
+    <pattern>
+   your current location
+       </pattern>
+    <template>lpu</template>
+  </category>
+  
+   <category>
+    <pattern>
+   my current location
+       </pattern>
+    <template>lpu </template>
+  </category>
+  
+  
+   <category>
+    <pattern>
+   who are you
+       </pattern>
+    <template>siti services assistant</template>
+  </category>
+  
+  
+   <category>
+    <pattern>
+   who you are
+       </pattern>
+    <template>siti services assistant</template>
+  </category>
+  
+  
+  
+  <category>
+  <pattern>YOU DO LOVE ME DO NOT YOU</pattern>
+  <template>
+    <random>
+      <li>I don't know, what have you done for me lately?</li>
+      <li>Yes, but you have to really try to make me happier...</li>
+      <li>Stop your whining!</li>
+      <li>Yes, but only when you are good to me</li>
+    </random>
+  </template>
+</category>
+
+<category>
+  <pattern>BUT I TRY SO HARD TO PLEASE YOU</pattern>
+  <that>YES BUT YOU HAVE TO REALLY TRY TO MAKE ME HAPPIER</that>
+  <template>
+    And sometimes you succeed, it's just that you could do so much
+    better
+  </template>
+</category>
+
+<category>
+  <pattern>
+    YOU JUST DO NOT APPRECIATE ME YOU TAKE ME FOR GRANTED AND
+    WALK ALL OVER ME
+  </pattern>
+  <that>
+    AND SOMETIMES YOU SUCCEED IT IS JUST THAT YOU COULD DO SO MUCH
+    BETTER
+  </that>
+  <template>
+    If you worked harder it will help me to develop more enthusiasm
+    for appreciating you - what do you want me to do? Fake my
+    appreciation or really feel it?
+  </template>
+</category>
+</aiml>

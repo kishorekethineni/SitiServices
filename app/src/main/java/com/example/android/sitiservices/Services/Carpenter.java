@@ -39,7 +39,7 @@ public class Carpenter extends Fragment {
     {
         void onItemClickListenerOfCardView(int position);
     }
-    ArrayList<D_ShoesDataFromInternet> arrayListEthnic=new ArrayList<>();
+    ArrayList<D_ProfileOfWorker> arrayListEthnic=new ArrayList<>();
     ArrayList<String> stringArrayList=new ArrayList<>();
     Context context;
     MyAdapterEthnicmen myAdapterEthnic;
@@ -99,19 +99,22 @@ public class Carpenter extends Fragment {
             public void onItemClickListenerOfCardView(int position) {
                 Intent intent=new Intent(getContext(),CompleteViewOfProduct.class);
                 intent.putExtra("ProductLink",stringArrayList.get(position));
-                intent.putExtra("ImageLocation",arrayListEthnic.get(position).ImageLocation);
-                intent.putExtra("ProductTitle",arrayListEthnic.get(position).ProductTitleOfShoe);
-                intent.putExtra("ProductPrice",arrayListEthnic.get(position).ProductPriceOfShoe);
-                intent.putExtra("ProductDescription",arrayListEthnic.get(position).ProductDescriptionOfShoe);
-                intent.putExtra("ProductCategoryByGender","MenFootWear");
-                intent.putExtra("ProductCategoryByMaterial","Ethnic");
+                intent.putExtra("ImageLocation",arrayListEthnic.get(position).WorkerImage);
+                intent.putExtra("Workername",arrayListEthnic.get(position).WorkerName);
+                intent.putExtra("Workermobile",arrayListEthnic.get(position).WorkerMobileNumber);
+                intent.putExtra("WorkerEmail",arrayListEthnic.get(position).WorkerEmail);
+                intent.putExtra("Workerbio",arrayListEthnic.get(position).WorkerBio);
+                intent.putExtra("Workeraddress",arrayListEthnic.get(position).WorkerAddress);
+                //intent.putExtra("ProductCategoryByGender","MenFootWear");
+                intent.putExtra("ProductCategoryByMaterial","Carpenter");
+                intent.putExtra("ProductCategoryByGender","Workers");
                 startActivity(intent);
             }
         });
     }
     public void getArrayListData()
     {
-        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("MenFootWear").child("Ethnic");
+        DatabaseReference databaseReference=FirebaseDatabase.getInstance().getReference("Workers").child("Carpenter");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -122,13 +125,13 @@ public class Carpenter extends Fragment {
                     if (dataSnapshot1.exists())
                     {
                         stringArrayList.add(dataSnapshot1.getKey());
-                        String productDescriptionOfShoe=dataSnapshot1.child("ProductDescriptionOfShoe").getValue(String.class);
-                        String ProductPrice=dataSnapshot1.child("ProductPriceOfShoe").getValue(String.class);
-                        String productTitle=dataSnapshot1.child("ProductTitleOfShoe").getValue(String.class);
-                        String imageLocation=dataSnapshot1.child("ImageLocation").getValue(String.class);
-                        D_ShoesDataFromInternet dShoesDataFromInternet=new D_ShoesDataFromInternet(productTitle,ProductPrice,productDescriptionOfShoe,imageLocation);
-
-                        arrayListEthnic.add(dShoesDataFromInternet);
+                        D_ProfileOfWorker d_profileOfWorker=dataSnapshot1.getValue(D_ProfileOfWorker.class);
+                        Log.e("Hey",d_profileOfWorker.WorkerName);
+                        arrayListEthnic.add(d_profileOfWorker);
+                    }
+                    else
+                    {
+                        Log.e("Hey","Datasnapshot does not exist!!");
                     }
                 }
                 myAdapterEthnic.notifyDataSetChanged();
@@ -146,13 +149,13 @@ public class Carpenter extends Fragment {
     {
         @Override
         protected Void doInBackground(Void... strings) {
-            DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("MenFootWear").child("Ethnic");
+            DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Workers").child("Carpenter");
             //arrayListEthnic.clear();
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()) {
-                        D_ShoesDataFromInternet dShoesDataFromInternet = dataSnapshot1.getValue(D_ShoesDataFromInternet.class);
+                        D_ProfileOfWorker dShoesDataFromInternet = dataSnapshot1.getValue(D_ProfileOfWorker.class);
                         if (dShoesDataFromInternet != null) {
                             arrayListEthnic.add(dShoesDataFromInternet);
                             Log.e("MenFragment","Going inside");
@@ -176,9 +179,9 @@ public class Carpenter extends Fragment {
     class MyAdapterEthnicmen extends RecyclerView.Adapter<MyAdapterEthnicmen.ViewHolderClass>
     {
 
-        ArrayList<D_ShoesDataFromInternet> arrayList;
+        ArrayList<D_ProfileOfWorker> arrayList;
         OnCardViewItemClickListener onCardViewItemClickListener;
-        public MyAdapterEthnicmen(ArrayList<D_ShoesDataFromInternet> arrayList1)
+        public MyAdapterEthnicmen(ArrayList<D_ProfileOfWorker> arrayList1)
         {
             this.arrayList=arrayList1;
         }
@@ -198,9 +201,9 @@ public class Carpenter extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
 
-            holder.Name.setText(arrayList.get(position).ProductTitleOfShoe);
-            holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
-            Glide.with(getContext()).load(arrayList.get(position).ImageLocation).into(holder.ProductImage);
+            holder.Name.setText(arrayList.get(position).WorkerName);
+            //holder.Price.setText(arrayList.get(position).ProductPriceOfShoe);
+            Glide.with(getContext()).load(arrayList.get(position).WorkerImage).into(holder.ProductImage);
         }
 
 
